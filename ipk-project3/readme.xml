@@ -1,0 +1,49 @@
+<ipk-projekt-3>
+    <autor>Pavol Loffay</autor>
+    <login>xloffa00@stud.fit.vutbr.cz</login>
+    <datum>19.04.2012</datum>
+    <soubory>
+        <soubor jmeno="rdtclient.cc" autor="Pavol Loffay"/>
+        <soubor jmeno="rdtserver.cc" autor="Pavol Loffay"/>
+        <soubor jmeno="packet.cc" autor="Pavol Loffay"/>
+        <soubor jmeno="packet.h" autor="Pavol Loffay"/>
+        <soubor jmeno="window.cc" autor="Pavol Loffay"/>
+        <soubor jmeno="window.h" autor="Pavol Loffay"/>
+        <soubor jmeno="params.cc" autor="Pavol Loffay"/>
+        <soubor jmeno="params.h" autor="Pavol Loffay"/>
+        <soubor jmeno="udt.h" autor="Ondrej Rysavy"/>
+        <soubor jmeno="base64.cc" autor="Rene Nyffenegger"/>
+        <soubor jmeno="base64.h" autor="Rene Nyffenegger"/>
+    </soubory>
+    <protokol>
+
+        Tento packet posiela klient serveru
+        <rdt-segment id="xloffa00">
+            <header>
+                <packet_id id="id cislo paketu"/>
+                <data_size size="velkost dat v data v bajtoch"/>
+            </header>
+            <data>
+                DATA IN BASE64
+            </data>
+        </rdt-segment>
+
+        Tento packet posiela server klientovy - ACK potvrdenie
+        packetu s id cislo packetu, ktory prijal server
+        <rdt-segment id="xloffa00">
+            <header>
+                <packet_id id="id cislo paketu"/>
+            </header>
+            <data>
+                ACK
+            </data>
+        </rdt-segment>
+
+        Klient posle packet a caka 5s, pokial nedostane ACK packet od servera.
+        Ak nedostane potvrdzujuci ack packet, ten isty packet posle znova.
+        Kazdy packet je indetifikovany podla ID. Jedinecne cislo, ktore sa 
+        zvacsuje. Podla toho server rozpozna prehadzane packety.
+        Klient posiela viac packetov sucasne. Je implementovany sliding window.
+    </protokol>
+</ipk-projekt-3>
+

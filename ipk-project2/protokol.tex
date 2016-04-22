@@ -1,0 +1,72 @@
+%Encoding: utf8
+%Author: Pavol Loffay, xloffa00@stud.fit.vutbr.cz
+%Date: 3.3.2012
+%Project: Popis protokolu pre projekt 2 do predmetu IPK
+
+\documentclass[10pt,a4paper]{article}
+
+%preambule
+\usepackage[slovak]{babel}
+\usepackage[top=2.5cm, left=1.5cm, text={18cm, 25cm}]{geometry}
+\usepackage[IL2]{fontenc}
+\usepackage[utf8]{inputenc}
+\newcommand\czuv[1]{\quotedblbase #1\textquotedblleft}
+
+%textova cast
+\begin{document}
+
+\title{Počítačová komunikácia a siete\,--\,projekt 2. \\ Aplikačný protokol}
+\author{Pavol Loffay\\xloffa00@stud.fit.vutbr.cz}
+\date{\today}
+\maketitle
+
+\section{Úvod}
+Tento dokument popisuje aplikačný protokol, ktorý som navrhol pre prenos 
+informácii medzi serverom a klientom.
+
+\section{Popis protokolu}
+Podľa zadania projektu bolo nutné, aby klient požadoval od serveru
+preklad domény na IPv4, alebo IPv6 adresu. Pričom mohol požiadať o obe adresy
+naraz. Zo strany serveru bolo nutné implementovať aby poslal IPv4, IPv6 alebo
+obe adresy súčasne. Ak sa nepodaril preklad, bolo nutné poslať túto informáciu
+klientovi.
+
+\subsection{Značky posielané klientom}
+Požiadavky klienta som sa rozhodol transformovať na správu,
+\texttt{GET\_IPV4}, ak klient žiada o IPv4 adresu. Alebo \texttt{GET\_IPV6}, ak
+klient požiada o IPv6 adresu, alebo \texttt{GET\_IPIP}, ak požiada o obe súčasne.
+Za týmito značkami vždy nasleduje
+\texttt{<značka><medzera><doména><medzera><\textbackslash r\textbackslash
+n\textbackslash r\textbackslash n>}. 
+
+\begin{table}[h]
+    \begin{center}
+        \begin{tabular}{lc}
+        Žiada preklad na adresu IPv4 & \texttt{GET\_IPV4} \\
+        Žiada preklad na adresu IPv6 & \texttt{GET\_IPV6} \\
+        Žiada preklad na adresy IPv6 a IPv4 & \texttt{GET\_IPIP}
+        \end{tabular}
+        \caption{Značky posielané klientom}
+    \end{center}
+\end{table}
+
+\subsection{Značky posielané serverom}
+Server odpovedá klientovi značkou \texttt{IPV4}, ak našiel preklad na IPv4
+adresu. Ďalej značkou \texttt{IPV6}, ak našiel preklad na IPv6 adresu. Za oboma
+týmito značkami nasleduje medzera a príslušná adresa
+\texttt{<značka><medzera><IP><medzera>}. Ak sa nepodaril preklad 
+na ani jednu adresu, o ktorú požadoval klient, server odpovie správou
+\texttt{NOT\_FOUND}.
+
+\begin{table}[h]
+    \begin{center}
+        \begin{tabular}{ll}
+        Adresa IPv4 & \texttt{IPV4} \\
+        Adresa IPv6 & \texttt{IPV6} \\
+        Preklad domény na IP adresu sa nenašiel & \texttt{NOT\_FOUND}
+        \end{tabular}
+        \caption{Značky posielané serverom}
+    \end{center}
+\end{table}
+\end{document}
+

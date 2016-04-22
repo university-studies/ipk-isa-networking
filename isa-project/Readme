@@ -1,0 +1,22 @@
+Autor: Pavol Loffay
+Login: xloffa00
+Datum: 11.11.2012
+Subor: Readme
+Popis: Tento subor strucne popisuje chovanie programu mypmtud
+       na zistenie maximalneho MTU na ceste.
+
+Pouzitie:
+    mypmtud [-m max] adresa
+        adresa: IPv4, IPv6 adresa alebo domenove meno
+        -m max: nepovinny parameter, udavajuci maximalnu hodnotu testovaneho
+            mtu v bajtoch.
+
+Preklad:
+    Linux 64 bitova architektura, GCC 4.7.1
+
+Podporovane operacne systemy:
+    Linux
+
+Odovzdane subory: manual.pdf, Readme, mypmtud.cc, params.cc, params.h, mtu_ipv4.cc, mtu_ipv4.h,
+        mtu_ipv6.cc, mtu_ipv6.h, conversion.cc, conversion.h, ip.cc, ip.h, checksum.cc, checksum.h. Makefile
+
