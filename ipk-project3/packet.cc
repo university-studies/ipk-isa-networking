@@ -4,7 +4,7 @@
  * Project: Projekt 3. do predmetu IPK
  *          implementacia spolahliveho prenosu pomocou RDT
  *          pouzity protokol je UDP
- * Module: Modul implementujuci spravy posielane medzu serverom a klientom
+ * Module: Modul implementujuci spravy posielane medzi serverom a klientom
  */
 
 #include <stdlib.h>
